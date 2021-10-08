@@ -1,6 +1,6 @@
 {
   "name": "proxy-evaluator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "LICENSE.md",
   "description": "Evaulates a proxy's performance characterstics",
   "author": "Mircea Cristian Mihalache <mf3rnol@gmail.com>",
@@ -42,7 +42,7 @@
   "scripts": {
     "start-evaluator": "node evaluator.js --",
     "start-server": "node server.js --",
-    "docs": "rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f index.js 'lib/**/*.js' > DOCUMENTATION.md",
+    "docs": "rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f *.js 'lib/**/*.js' > DOCUMENTATION.md",
     "gen-readme": "rm README.md && node scripts/gen_readme.js",
     "lint": "./node_modules/.bin/eslint package.json '*.js' lib test --",
     "release": "npm test && npm run docs && npm run gen-readme && npm run update-version && git push origin master --follow-tags",
