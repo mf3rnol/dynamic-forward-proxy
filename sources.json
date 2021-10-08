@@ -1,0 +1,30 @@
+{
+  "path": "vendor/",
+  "sources": [{
+    "path": "TheSpeedX/PROXY-List/http.txt",
+    "protocol": "http",
+    "format": "EOL"
+  }, {
+    "path": "TheSpeedX/PROXY-List/socks4.txt",
+    "protocol": "socks4",
+    "format": "EOL"
+  }, {
+    "path": "TheSpeedX/PROXY-List/socks5.txt",
+    "protocol": "socks5",
+    "format": "EOL"
+  }, {
+    "path": "hookzof/socks5_list/proxy.txt",
+    "protocol": "socks5",
+    "format": "EOL"
+  }, {
+    "path": "hookzof/socks5_list/tg/socks.json",
+    "protocol": "socks5",
+    "format": "json",
+    "schema": {
+      "ip": "host",
+      "port": "port",
+      "unix": "mts",
+      "country": "country"
+    }
+  }]
+}

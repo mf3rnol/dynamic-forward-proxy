@@ -1,0 +1,6 @@
+[submodule "vendor/hookzof/socks5_list"]
+	path = vendor/hookzof/socks5_list
+	url = https://github.com/hookzof/socks5_list.git
+[submodule "vendor/TheSpeedX/PROXY-List"]
+	path = vendor/TheSpeedX/PROXY-List
+	url = https://github.com/TheSpeedX/PROXY-List.git

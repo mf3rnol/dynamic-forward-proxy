@@ -1,0 +1,8 @@
+{
+  "root": true,
+  "extends": ["@f3rno/eslint-config/node"],
+  "rules": {
+    "prefer-destructuring": 0,
+    "clean-regex/no-lone-square-bracket": 0
+  }
+}
