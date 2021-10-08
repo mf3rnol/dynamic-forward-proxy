@@ -1,6 +1,6 @@
 {
   "name": "proxy-evaluator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "LICENSE.md",
   "description": "Evaulates a proxy's performance characterstics",
   "author": "Mircea Cristian Mihalache <mf3rnol@gmail.com>",
