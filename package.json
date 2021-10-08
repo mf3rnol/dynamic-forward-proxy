@@ -4,16 +4,18 @@
   "license": "LICENSE.md",
   "description": "Evaulates a proxy's performance characterstics",
   "author": "Mircea Cristian Mihalache <mf3rnol@gmail.com>",
-  "main": "./index.js",
+  "main": "./evaluator.js",
   "engines": {
     "node": ">=14.0.0"
   },
   "files": [
-    "index.js",
+    "evaluator.js",
+    "server.js",
     "lib/**"
   ],
   "bin": {
-    "proxy-evaluator": "index.js"
+    "proxy-evaluator": "evaluator.js",
+    "proxy-pool-server": "server.js"
   },
   "directories": {
     "lib": "lib",
@@ -38,7 +40,8 @@
     "cli"
   ],
   "scripts": {
-    "start": "node index.js",
+    "start-evaluator": "node evaluator.js --",
+    "start-server": "node server.js --",
     "docs": "rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f index.js 'lib/**/*.js' > DOCUMENTATION.md",
     "gen-readme": "rm README.md && node scripts/gen_readme.js",
     "lint": "./node_modules/.bin/eslint package.json '*.js' lib test --",
@@ -56,6 +59,9 @@
     "dotenv": "^10.0.0",
     "geoip-lite-latest": "^1.4.5",
     "http-proxy-agent": "^5.0.0",
+    "koa": "^2.13.3",
+    "koa-404-handler": "^0.0.2",
+    "koa-better-error-handler": "^7.0.1",
     "lodash": "^4.17.21",
     "p-iteration": "^1.1.8",
     "signale": "^1.4.0",

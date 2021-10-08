@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
 require('dotenv').config()
 
@@ -25,9 +25,9 @@ runProxyEvaluator({
   reqBatchDelayMS: REQ_BATCH_DELAY_MS,
   reqBatchSize: REQ_BATCH_SIZE,
   reqDelayMS: REQ_DELAY_MS
-}).then((proxies = []) => {
-  return proxies.length
-}).catch((err) => {
+}).then((proxies = []) => (
+  proxies.length
+)).catch((err) => {
   logError(err, l)
 
   return 0
