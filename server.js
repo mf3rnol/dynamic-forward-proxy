@@ -53,11 +53,7 @@ serverHTTPS.on('close', () => {
   )
 })
 
-serverHTTPS.on('connection', (socket) => {
-  l.debug('')
-
-})
-
+serverHTTPS.on('connection', (socket) => {})
 serverHTTPS.on('error', logError)
 
 serverHTTPS.listen({

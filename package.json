@@ -15,7 +15,8 @@
   ],
   "bin": {
     "proxy-evaluator": "evaluator.js",
-    "proxy-pool-server": "server.js"
+    "proxy-pool-server": "server.js",
+    "proxy-pool-telegram-bot": "telegram_bot.js"
   },
   "directories": {
     "lib": "lib",
@@ -63,6 +64,7 @@
     "koa-404-handler": "^0.0.2",
     "koa-better-error-handler": "^7.0.1",
     "lodash": "^4.17.21",
+    "node-telegram-bot-api": "^0.54.0",
     "p-iteration": "^1.1.8",
     "signale": "^1.4.0",
     "socks-proxy-agent": "^6.1.0",
