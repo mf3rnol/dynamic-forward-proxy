@@ -4,6 +4,7 @@
   "rules": {
     "prefer-destructuring": 0,
     "clean-regex/no-lone-square-bracket": 0,
+    "jsdoc/require-jsdoc": 0,
     "jsdoc/require-example": 0
   }
 }

@@ -2,63 +2,56 @@
 
 require('dotenv').config()
 
-const http = require('http')
-const https = require('https')
+const { promises: fs } = require('fs')
+const path = require('path')
+const Promise = require('bluebird')
 const colors = require('colors')
-const getLogger = require('./lib/util/get_logger')
 const createServer = require('./lib/server')
+const getLogger = require('./lib/util/get_logger')
 const logError = require('./lib/util/log_error')
 
-const l = getLogger('prox-pool:server:http')
-const server = createServer()
-
+const l = getLogger('exec:server')
 const {
-  POOL_HTTP_SERVER_ENABLED: serverHTTPEnabled,
-  POOL_HTTP_SERVER_HOST: serverHTTPHost,
-  POOL_HTTP_SERVER_PORT: serverHTTPPort,
-  POOL_HTTP_SERVER_BACKLOG: serverHTTPBacklog,
-  POOL_HTTP_SERVER_EXCLUSIVE: serverHTTPExclusive,
-
-  POOL_HTTPS_SERVER_ENABLED: serverHTTPSEnabled,
-  POOL_HTTPS_SERVER_HOST: serverHTTPSHost,
-  POOL_HTTPS_SERVER_PORT: serverHTTPSPort,
-  POOL_HTTPS_SERVER_BACKLOG: serverHTTPSBacklog,
-  POOL_HTTPS_SERVER_EXCLUSIVE: serverHTTPSExclusive
+  SERVER_PORT: port,
+  SERVER_PROXY_LIST_PATH: proxyListPath
 } = process.env
 
-l.star('boot %s', colors.green(new Date().toLocaleString()))
+const run = async () => {
+  const proxyListPathRel = path.relative(__dirname, proxyListPath)
+  const proxyListJSON = await fs.readFile(proxyListPathRel, 'utf-8')
+  const proxies = JSON.parse(proxyListJSON)
 
-const serverHTTP = http.createServer(app.callback())
+  l.success('using %s proxies', colors.green(proxies.length))
 
-serverHTTP.listen({
-  port: serverHTTPPort,
-  host: serverHTTPHost,
-  backlog: serverHTTPBacklog,
-  exclusive: serverHTTPExclusive === 'true'
-})
-const serverHTTPS = https.createServer(app.callback())
+  const server = createServer({ port: +port, proxies })
 
-serverHTTPS.on('listening', () => {
-  l.info(
-    'open: %s:%s',
-    colors.green(serverHTTPSHost),
-    colors.blue(serverHTTPSPort)
+  server.listen(() => {
+    l.success('listening on port %s', colors.yellow(port))
+  })
+
+  return new Promise((resolve) => {
+    server.on('close', () => {
+      resolve()
+    })
+  })
+}
+
+const mtsStart = Date.now()
+
+l.star('started: %s', colors.cyan(new Date(mtsStart).toLocaleString()))
+
+run().then(() => {
+  const mtsEnd = Date.now()
+
+  l.star(
+    'finished after %s: %s',
+    colors.green(`${mtsEnd - mtsStart}ms`),
+    colors.cyan(new Date(mtsEnd).toLocaleString())
   )
-})
-serverHTTPS.on('close', () => {
-  l.info(
-    'closed: %s:%s',
-    colors.green(serverHTTPSHost),
-    colors.blue(serverHTTPSPort)
-  )
-})
 
-serverHTTPS.on('connection', (socket) => {})
-serverHTTPS.on('error', logError)
+  return null
+}).catch((err) => {
+  logError(err, l)
 
-serverHTTPS.listen({
-  port: serverHTTPSPort,
-  host: serverHTTPSHost,
-  backlog: serverHTTPSBacklog,
-  exclusive: serverHTTPSExclusive === 'true'
+  return null
 })

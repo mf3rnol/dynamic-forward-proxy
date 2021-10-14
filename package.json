@@ -54,7 +54,7 @@
     "update-geoip-db": "node ./node_modules/geoip-lite/scripts/updatedb.js"
   },
   "dependencies": {
-    "bluebird-global": "^1.0.1",
+    "bluebird": "^3.7.2",
     "cacheable-lookup": "^6.0.2",
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
@@ -64,8 +64,12 @@
     "koa-404-handler": "^0.0.2",
     "koa-better-error-handler": "^7.0.1",
     "lodash": "^4.17.21",
+    "lowdb": "^3.0.0",
     "node-telegram-bot-api": "^0.54.0",
+    "object-hash": "^2.2.0",
     "p-iteration": "^1.1.8",
+    "proxy-chain": "^1.0.4",
+    "replace-ext": "^2.0.0",
     "signale": "^1.4.0",
     "socks-proxy-agent": "^6.1.0",
     "superagent": "^6.1.0",
