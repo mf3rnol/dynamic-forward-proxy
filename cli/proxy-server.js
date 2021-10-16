@@ -1,37 +1,29 @@
 #!/usr/bin/env node
 
-require('dotenv').config()
-
 const { promises: fs } = require('fs')
 const path = require('path')
 const Promise = require('bluebird')
 const colors = require('colors')
-const createServer = require('./lib/server')
-const getLogger = require('./lib/util/get_logger')
-const logError = require('./lib/util/log_error')
+const getServer = require('../lib/server')
+const { execCLI } = require('../lib/util')
 
-const l = getLogger('exec:server')
-const {
-  SERVER_PORT: port,
-  SERVER_PROXY_LIST_PATH: proxyListPath
-} = process.env
-
-const run = async () => {
+const cliProxyServerWorker = async (args = {}) => {
+  const { config = {}, l, logError } = args
   const proxyListPathRel = path.relative(__dirname, proxyListPath)
   const proxyListJSON = await fs.readFile(proxyListPathRel, 'utf-8')
   const proxies = JSON.parse(proxyListJSON)
 
-  l.success('using %s proxies', colors.green(proxies.length))
+  l.debug('using %s proxies', colors.green(proxies.length))
 
-  const server = createServer({ port: +port, proxies })
-
-  server.listen(() => {
-    l.success('listening on port %s', colors.yellow(port))
-  })
+  const server = getServer({ port, proxies })
 
   return new Promise((resolve) => {
     server.on('close', () => {
       resolve()
+    })
+
+    server.listen(() => {
+      l.success('listening on port %s', colors.yellow(port))
     })
   })
 }
