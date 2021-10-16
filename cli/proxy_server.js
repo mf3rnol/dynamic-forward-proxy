@@ -10,14 +10,15 @@ const serviceProxyServer = require('../lib/cli/services/proxy_server')
  * @todo refactor, swap lowdb out for a proper DB + inter-service messsaging
  */
 
-const MIRRORS = [
-  'stake.com',
-  'stake.games',
-  'stake.bet',
-  'staketr.com',
-  'staketr2.com',
-  'staketr3.com'
-]
+/*
+ * const MIRRORS = [
+ *   'stake.com',
+ *   'stake.games',
+ *   'stake.bet',
+ *   'staketr.com',
+ *   'staketr2.com',
+ *   'staketr3.com'
+ * ]
+ */
 
-execService('proxy-server', serviceProxyServer, {
-})
+execService('proxy-server', serviceProxyServer)
