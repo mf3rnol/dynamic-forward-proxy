@@ -1,6 +1,6 @@
 {
   "name": "@mf3rnol/dynamic-forward-proxy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "LICENSE.md",
   "description": "Set of services for maintaining a list of proxies and their performance metrics. Includes a forward-proxy server that works with the pool once established, and a bot to control opertation and create custom sub-pools for individuual users/user-cases",
   "author": "Mircea Cristian Mihalache <f3rno.x2@gmail.com>",
