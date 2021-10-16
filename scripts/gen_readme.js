@@ -11,7 +11,7 @@ const getPath = p => path.join(__dirname, '../', p)
 
 const TEMPLATE_SRC = '.README.md'
 const TEMPLATE_DST = 'README.md'
-const API_SRC = ['*.js', 'lib/**'].map(getPath)
+const API_SRC = ['cli/*.js', 'lib/**'].map(getPath)
 
 const l = getLogger()
 
