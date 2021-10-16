@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
-const { exec, serviceTelegramBot } = require('../lib/cli')
+const { execService } = require('../lib/cli')
+const serviceTelegramBot = require('../lib/cli/services/telegram_bot')
 
-exec('telegram-bot', serviceTelegramBot)
+execService('telegram-bot', serviceTelegramBot)

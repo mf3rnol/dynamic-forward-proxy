@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
-const { exec, serviceProxyEvaluator } = require('../lib/cli')
+const { execService } = require('../lib/cli')
+const serviceProxyEvaluator = require('../lib/cli/services/proxy_evaluator')
 
-exec('proxy-evaluator', serviceProxyEvaluator)
+execService('proxy-evaluator', serviceProxyEvaluator)

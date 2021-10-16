@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const { exec, serviceProxyServer } = require('../lib/cli')
+const { execService } = require('../lib/cli')
+const serviceProxyServer = require('../lib/cli/services/proxy_server')
 
 /**
  * Prior to control via TG bot, operation will be defined here for Dennis to
@@ -18,11 +19,5 @@ const MIRRORS = [
   'staketr3.com'
 ]
 
-
-
-
-exec('proxy-server', serviceProxyServer, {
-  rules: [{
-    urlRegExp: new RegExp(`/^\\(http|https\\):\\(${MIRROR_DOMAINS}\\)\\.\\(${MIRROR_TLDS}\\)\\(\\)\\.*`, 'u'),
-  }]
+execService('proxy-server', serviceProxyServer, {
 })
