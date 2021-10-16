@@ -42,17 +42,17 @@
     "cli"
   ],
   "scripts": {
-    "start-evaluator": "node evaluator.js --",
-    "start-server": "node server.js --",
     "docs": "rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f scripts/*.js cli/*.js 'lib/**/*.js' > DOCUMENTATION.md",
     "gen-readme": "rm README.md && node scripts/gen_readme.js",
     "lint": "./node_modules/.bin/eslint package.json scripts cli lib test --",
     "release": "npm test && npm run docs && npm run gen-readme && npm run update-version && git push origin master --follow-tags",
+    "start-evaluator": "node evaluator.js --",
+    "start-server": "node server.js --",
     "test": "npm run lint && npm run unit",
     "unit": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive",
     "update-deps": "./node_modules/.bin/updates -u -g -c",
-    "update-version": "./node_modules/.bin/standard-version",
-    "update-geoip-db": "node ./node_modules/geoip-lite/scripts/updatedb.js"
+    "update-geoip-db": "node ./node_modules/geoip-lite/scripts/updatedb.js",
+    "update-version": "./node_modules/.bin/standard-version"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
